@@ -197,7 +197,7 @@ function layoutPage(title, subtitle, bodyNode) {
         h("div", { style: "color:var(--muted);margin-top:8px;font-size:13px" }, "Equipos revisados, listos para trabajar. Compra segura y venta sin complicaciones."),
         h("div", { style: "margin-top:12px;display:grid;gap:8px" }, [
           h("div", { class: "feature" }, [h("div", { class: "feature__t" }, "Reacondicionado premium"), h("div", { class: "feature__d" }, "Pruebas, limpieza y optimización.")]),
-          h("div", { class: "feature" }, [h("div", { class: "feature__t" }, "Compra y venta"), h("div", { class: "feature__d" }, "Recibimos tu equipo usado y te ofertamos.")])
+        h("div", { class: "feature" }, [h("div", { class: "feature__t" }, "Compra y venta"), h("div", { class: "feature__d" }, "Recibimos tu equipo usado y te contactamos.")])
         ])
       ]),
     ])
@@ -206,45 +206,88 @@ function layoutPage(title, subtitle, bodyNode) {
   return h("div", { class: "section", style: "display:grid;gap:14px" }, [header, bodyNode]);
 }
 
+function createNav() {
+  return h("nav", { class: "nav" }, [
+    h("div", { class: "brand" }, [
+      h("img", { class: "brand__img", src: "/ryton-logo.jpeg", alt: "Ryton", style: "height:40px;width:auto;margin-right:12px;" }),
+      h("span", {}, "Ryton")
+    ]),
+    h("div", { class: "links" }, [
+      h("a", { href: "#/", class: "nav-link" }, [
+        h("i", { class: "fas fa-home nav-icon" }, ""),
+        "Inicio"
+      ]),
+      h("a", { href: "#/productos", class: "nav-link" }, [
+        h("i", { class: "fas fa-shopping-bag nav-icon" }, ""),
+        "Productos"
+      ]),
+      h("a", { href: "#/vender", class: "nav-link" }, [
+        h("i", { class: "fas fa-hand-holding-usd nav-icon" }, ""),
+        "Vender"
+      ]),
+      h("a", { href: "#/contacto", class: "nav-link" }, [
+        h("i", { class: "fas fa-envelope nav-icon" }, ""),
+        "Contacto"
+      ]),
+      h("a", { href: "#/blog", class: "nav-link" }, [
+        h("i", { class: "fas fa-blog nav-icon" }, ""),
+        "Blog"
+      ]),
+      h("a", { href: "#/carrito", class: "nav-link" }, [
+        h("i", { class: "fas fa-shopping-cart nav-icon" }, ""),
+        "Carrito"
+      ]),
+      h("a", { href: "#/cuenta", class: "nav-link" }, [
+        h("i", { class: "fas fa-user nav-icon" }, ""),
+        "Cuenta"
+      ])
+    ])
+  ]);
+}
+
 function homePage() {
   const body = h("div", { class: "section", style: "display:grid;gap:14px" }, [
     h("div", { class: "card", style: "padding:14px" }, [
       h("div", { class: "section__title wave-text" }, "Marcas que trabajamos"),
-      h("a", { class: "brand", href: "#/" }, [
-        h("img", { class: "brand__img", src: "/logo.jpeg", alt: "Ryton" }),
-        h("span", {}, "Ryton")
-      ]),
-      h("div", { class: "links" }, [
-        h("a", { href: "#/", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-home nav-icon" }, ""),
-          "Inicio"
+      h("div", { class: "brand-grid" }, [
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🏢"),
+          h("div", { class: "brand-name" }, "Dell")
         ]),
-        h("a", { href: "#/productos", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-shopping-bag nav-icon" }, ""),
-          "Productos"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "💻"),
+          h("div", { class: "brand-name" }, "HP")
         ]),
-        h("a", { href: "#/vender", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-hand-holding-usd nav-icon" }, ""),
-          "Vender"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🖥️"),
+          h("div", { class: "brand-name" }, "Lenovo")
         ]),
-        h("a", { href: "#/contacto", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-envelope nav-icon" }, ""),
-          "Contacto"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🎮"),
+          h("div", { class: "brand-name" }, "ASUS")
         ]),
-        h("a", { href: "#/blog", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-blog nav-icon" }, ""),
-          "Blog"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🖥️"),
+          h("div", { class: "brand-name" }, "Acer")
         ]),
-        h("a", { href: "#/carrito", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-shopping-cart nav-icon" }, ""),
-          "Carrito"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🍎"),
+          h("div", { class: "brand-name" }, "Apple")
         ]),
-        h("a", { href: "#/cuenta", class: "nav-link slide-up" }, [
-          h("i", { class: "fas fa-user nav-icon" }, ""),
-          "Cuenta"
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🖱️"),
+          h("div", { class: "brand-name" }, "Microsoft")
+        ]),
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "🖥️"),
+          h("div", { class: "brand-name" }, "Samsung")
+        ]),
+        h("div", { class: "brand-item zoom-in" }, [
+          h("div", { class: "brand-logo" }, "⚙️"),
+          h("div", { class: "brand-name" }, "Toshiba")
         ])
       ]),
-      h("div", { style: "color:var(--muted);margin-top:10px;font-size:13px" }, "Disponibilidad según inventario. Si buscas un modelo específico, escríbenos desde Contacto.")
+      h("div", { style: "color:var(--muted);margin-top:10px;font-size:13px" }, "Trabajamos con las principales marcas del mercado. Todos los equipos son revisados y cuentan con garantía.")
     ]),
 
     h("div", { class: "card", style: "padding:14px" }, [

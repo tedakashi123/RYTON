@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import net from "net";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -45,10 +46,9 @@ const PORT = process.env.PORT || 3000;
 await connectMongo();
 
 // Find available port if 3000 is taken
-async function findAvailablePort(startPort = 3000) {
-  const net = await import('net');
+function findAvailablePort(startPort = 3000) {
   return new Promise((resolve) => {
-    const server = net.default.createServer();
+    const server = net.createServer();
     server.listen(startPort, () => {
       const port = server.address().port;
       server.close(() => resolve(port));
