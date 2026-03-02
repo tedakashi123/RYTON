@@ -40,11 +40,43 @@ app.use("/api", apiRouter);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const port = Number(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
 
 await connectMongo();
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server running on http://localhost:${port}`);
-});
+// Find available port if 3000 is taken
+async function findAvailablePort(startPort = 3000) {
+  const net = await import('net');
+  return new Promise((resolve) => {
+    const server = net.default.createServer();
+    server.listen(startPort, () => {
+      const port = server.address().port;
+      server.close(() => resolve(port));
+    });
+    server.on('error', () => {
+      // Port is taken, try next
+      resolve(findAvailablePort(startPort + 1));
+    });
+  });
+}
+
+// Start server with auto-port
+async function startServer() {
+  let port = PORT;
+  if (PORT === 3000) {
+    try {
+      port = await findAvailablePort();
+    } catch (e) {
+      console.log('Using default port 3000');
+    }
+  }
+  
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    if (port !== 3000) {
+      console.log(`Note: Port 3000 was busy, using port ${port}`);
+    }
+  });
+}
+
+startServer();

@@ -188,18 +188,18 @@ function layoutPage(title, subtitle, bodyNode) {
     h("div", { class: "hero__blob" }),
     h("div", { class: "hero__grid" }, [
       h("div", {}, [
-        h("h1", { class: "hero__title" }, title),
+        h("h1", { class: "hero__title bounce-in" }, title),
         h("p", { class: "hero__subtitle" }, subtitle),
         h("div", { class: "hero__cta" }, [])
       ]),
-      h("div", { class: "card", style: "padding:16px;border-radius:14px;background:rgba(255,255,255,0.04);" }, [
+      h("div", { class: "card pulse-glow", style: "padding:16px;border-radius:14px;background:rgba(255,255,255,0.04);" }, [
         h("div", { style: "font-weight:900" }, "Garantía y soporte"),
         h("div", { style: "color:var(--muted);margin-top:8px;font-size:13px" }, "Equipos revisados, listos para trabajar. Compra segura y venta sin complicaciones."),
         h("div", { style: "margin-top:12px;display:grid;gap:8px" }, [
           h("div", { class: "feature" }, [h("div", { class: "feature__t" }, "Reacondicionado premium"), h("div", { class: "feature__d" }, "Pruebas, limpieza y optimización.")]),
           h("div", { class: "feature" }, [h("div", { class: "feature__t" }, "Compra y venta"), h("div", { class: "feature__d" }, "Recibimos tu equipo usado y te ofertamos.")])
         ])
-      ])
+      ]),
     ])
   ]);
 
@@ -209,14 +209,40 @@ function layoutPage(title, subtitle, bodyNode) {
 function homePage() {
   const body = h("div", { class: "section", style: "display:grid;gap:14px" }, [
     h("div", { class: "card", style: "padding:14px" }, [
-      h("div", { class: "section__title" }, "Marcas que trabajamos"),
-      h("div", { class: "brandstrip" }, [
-        h("div", { class: "brandchip" }, "Dell"),
-        h("div", { class: "brandchip" }, "HP"),
-        h("div", { class: "brandchip" }, "Lenovo"),
-        h("div", { class: "brandchip" }, "ASUS"),
-        h("div", { class: "brandchip" }, "Acer"),
-        h("div", { class: "brandchip" }, "Apple")
+      h("div", { class: "section__title wave-text" }, "Marcas que trabajamos"),
+      h("a", { class: "brand", href: "#/" }, [
+        h("img", { class: "brand__img", src: "/logo.jpeg", alt: "Ryton" }),
+        h("span", {}, "Ryton")
+      ]),
+      h("div", { class: "links" }, [
+        h("a", { href: "#/", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-home nav-icon" }, ""),
+          "Inicio"
+        ]),
+        h("a", { href: "#/productos", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-shopping-bag nav-icon" }, ""),
+          "Productos"
+        ]),
+        h("a", { href: "#/vender", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-hand-holding-usd nav-icon" }, ""),
+          "Vender"
+        ]),
+        h("a", { href: "#/contacto", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-envelope nav-icon" }, ""),
+          "Contacto"
+        ]),
+        h("a", { href: "#/blog", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-blog nav-icon" }, ""),
+          "Blog"
+        ]),
+        h("a", { href: "#/carrito", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-shopping-cart nav-icon" }, ""),
+          "Carrito"
+        ]),
+        h("a", { href: "#/cuenta", class: "nav-link slide-up" }, [
+          h("i", { class: "fas fa-user nav-icon" }, ""),
+          "Cuenta"
+        ])
       ]),
       h("div", { style: "color:var(--muted);margin-top:10px;font-size:13px" }, "Disponibilidad según inventario. Si buscas un modelo específico, escríbenos desde Contacto.")
     ]),
@@ -247,8 +273,14 @@ function homePage() {
         ])
       ]),
       h("div", { class: "section", style: "display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end" }, [
-        h("button", { class: "btn btn--primary", onclick: () => navigate("/productos") }, "Ver catálogo"),
-        h("button", { class: "btn", onclick: () => navigate("/vender") }, "Vender mi computador")
+        h("button", { class: "btn btn--primary", onclick: () => navigate("/productos") }, [
+          h("span", { style: "margin-right:6px;" }, "🛒"),
+          "Ver catálogo"
+        ]),
+        h("button", { class: "btn", onclick: () => navigate("/vender") }, [
+          h("span", { style: "margin-right:6px;" }, "💻"),
+          "Vender mi computador"
+        ])
       ])
     ]),
 
@@ -317,8 +349,14 @@ function homePage() {
           h("div", { class: "cta__desc" }, "Compra reacondicionado premium o vende tu usado en minutos. Ryton lo hace simple."),
         ]),
         h("div", { class: "cta__actions" }, [
-          h("button", { class: "btn btn--primary", onclick: () => navigate("/productos") }, "Comprar ahora"),
-          h("button", { class: "btn btn--ghost", onclick: () => navigate("/contacto") }, "Hablar con soporte")
+          h("button", { class: "btn btn--primary", onclick: () => navigate("/productos") }, [
+            h("span", { style: "margin-right:6px;" }, "🚀"),
+            "Comprar ahora"
+          ]),
+          h("button", { class: "btn btn--ghost", onclick: () => navigate("/contacto") }, [
+            h("span", { style: "margin-right:6px;" }, "💬"),
+            "Hablar con soporte"
+          ])
         ])
       ])
     ])
@@ -331,9 +369,18 @@ function homePage() {
   );
 
   page.querySelector(".hero__cta").append(
-    h("button", { class: "btn btn--primary", onclick: () => navigate("/productos") }, "Comprar"),
-    h("button", { class: "btn", onclick: () => navigate("/vender") }, "Vender"),
-    h("a", { class: "btn btn--ghost", href: "#/admin" }, "Admin")
+    h("button", { class: "btn btn--primary sound-click rainbow-border shimmer", onclick: () => navigate("/productos") }, [
+      h("i", { class: "fas fa-shopping-cart" }, ""),
+      " Comprar"
+    ]),
+    h("button", { class: "btn sound-click hover-lift", onclick: () => navigate("/vender") }, [
+      h("i", { class: "fas fa-laptop" }, ""),
+      " Vender"
+    ]),
+    h("a", { class: "btn btn--ghost sound-click magnetic-hover", href: "#/admin" }, [
+      h("i", { class: "fas fa-cog" }, ""),
+      " Admin"
+    ])
   );
 
   return page;
@@ -394,9 +441,8 @@ function productsPage() {
       }
 
       for (const p of items) {
-        const img = p.images?.[0];
+        const img = p.images?.[0] || null;
         const cardP = h("div", { class: "product" }, [
-          h("div", { class: "product__img" }, img ? "Foto" : "Equipo"),
           h("div", { class: "product__title" }, p.title),
           h("div", { class: "product__meta" }, [
             h("div", {}, `${p.brand} • ${p.model}`),
@@ -573,8 +619,8 @@ function accountPage() {
   const root = h("div", { class: "card", style: "padding:14px;display:grid;gap:14px" }, []);
 
   const header = h("div", {}, [
-    h("div", { class: "section__title" }, "Cuenta"),
-    h("div", { style: "color:var(--muted)" }, state.user ? `Sesión activa: ${state.user.email}` : "Crea una cuenta o inicia sesión.")
+    h("div", { class: "section__title" }, "Mi cuenta"),
+    h("div", { style: "color:var(--muted)" }, "Gestiona tu sesión y revisa tus pedidos.")
   ]);
 
   root.appendChild(header);
